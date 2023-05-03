@@ -308,4 +308,27 @@ match x:
         win.mainloop()
 # //////////////////////////////////////////////////////
     case '10':
-        pass
+        win = tk.Tk()
+
+        Width = 500
+        Height = 400
+        m_left = 100
+        m_top = 200
+        win.geometry(f"{Width}x{Height}+{m_top}+{m_left}")
+        win.title("ფანჯრის სახელი")
+
+        def get_entry():
+            value = name.get()
+            print(value)
+
+        tk.Label(win, text="სახელი").grid(row=0, column=0, stick="w")
+
+        tk.Button(win, text="get", command=get_entry).grid(row=1, column=0,)
+
+        name = tk.Entry(win)
+        name.grid(row=0, column=1)
+
+        win.grid_columnconfigure(0, minsize=100)
+        win.grid_columnconfigure(1, minsize=100)
+
+        win.mainloop()

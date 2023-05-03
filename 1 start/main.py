@@ -19,6 +19,12 @@ print("""
 {8} - ვიჯეტების მოთავსება, მეთოდი grid()
 {9} - ვიჯეტების მოთავსება, მეთოდი grid()   ციკლის გამოყენება
 {10}- entry  ტექსტური ინფორმაციის შეტანა
+
+
+            n
+        w       e
+            s
+
 """)
 x = input(">>>> ")
 match x:
@@ -319,14 +325,40 @@ match x:
 
         def get_entry():
             value = name.get()
-            print(value)
+            if value:
+                print(value)
+            else:
+                print("add value in name")
+
+        def delete_entry():
+            name.delete(0)  #delete(0) 0 არგუმენტში ნიშნავს რომ პირველ ელემენტს შლის
+
+        def delete_all_entry():
+            # name.delete(0, 'end')
+            name.delete(0, tk.END)
+
+        def submit():
+            pass_val = password.get()
+            if pass_val:
+                print(pass_val)
+            else:
+                print("password value is empty")
 
         tk.Label(win, text="სახელი").grid(row=0, column=0, stick="w")
 
-        tk.Button(win, text="get", command=get_entry).grid(row=1, column=0,)
+        tk.Label(win, text="პაროლი").grid(row=1, column=0, stick="w")
+
+        tk.Button(win, text="get", command=get_entry).grid(row=2, column=0, sticky='we')
+        tk.Button(win, text="delete first symbol", command=delete_entry).grid(row=2, column=1, sticky='we')
+        tk.Button(win, text="delete all symbol", command=delete_all_entry).grid(row=2, column=2, sticky='we')
+        tk.Button(win, text="insert 'hello'", command=lambda: name.insert(0, "hello")).grid(row=2, column=3, sticky='we')
+        tk.Button(win, text="submit'", command=submit).grid(row=3, column=0, sticky='we')
 
         name = tk.Entry(win)
         name.grid(row=0, column=1)
+
+        password = tk.Entry(win, show="*")  #show='*'   ცვლის ჩაწერილ სიმბოლოებს ფიფქად
+        password.grid(row=1, column=1)
 
         win.grid_columnconfigure(0, minsize=100)
         win.grid_columnconfigure(1, minsize=100)

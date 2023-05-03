@@ -8,17 +8,18 @@ import tkinter as tk
 
 print("="*20, "menu", "="*20)
 print("""
-{1} - learn
-{2} - ფანჯრის შექმნა, ზომა, პოზიცია, აიკონი, სახელი, ბექგრაუნდი, მინ-მაქს ზომა
-{3} - ვიჯეტები: label
-{4} - ვიჯეტი: button
-{5} - დავალება:  ღილაკის დაჭერის შემდეგ სხვა ღილაკი ირთვება ან ითიშება
-{6} - დავალება:  ღილაკის დაჭერის შემდეგ ფანჯრის ბექგრაუნდი იცვლება
-{6.1} დავალება:  ღილაკის დაჭერის შემდეგ რანდომულად შეიცვალოს ბექგრაუნდის ფერი
-{7} - input
-{8} - ვიჯეტების მოთავსება, მეთოდი grid()
-{9} - ვიჯეტების მოთავსება, მეთოდი grid()   ციკლის გამოყენება
-{10}- entry  ტექსტური ინფორმაციის შეტანა
+{1}  - learn
+{2}  - ფანჯრის შექმნა, ზომა, პოზიცია, აიკონი, სახელი, ბექგრაუნდი, მინ-მაქს ზომა
+{3}  - ვიჯეტები: label
+{4}  - ვიჯეტი: button
+{5}  - დავალება:  ღილაკის დაჭერის შემდეგ სხვა ღილაკი ირთვება ან ითიშება
+{6}  - დავალება:  ღილაკის დაჭერის შემდეგ ფანჯრის ბექგრაუნდი იცვლება
+{6.1}- დავალება:  ღილაკის დაჭერის შემდეგ რანდომულად შეიცვალოს ბექგრაუნდის ფერი
+{7}  - input
+{8}  - ვიჯეტების მოთავსება, მეთოდი grid()
+{9}  - ვიჯეტების მოთავსება, მეთოდი grid()   ციკლის გამოყენება
+{10} - entry  ტექსტური ინფორმაციის შეტანა
+{11} - კალკულატორი
 
 
             n
@@ -362,5 +363,47 @@ match x:
 
         win.grid_columnconfigure(0, minsize=100)
         win.grid_columnconfigure(1, minsize=100)
+
+        win.mainloop()
+# //////////////////////////////////////////////////////
+    case '11':
+        win = tk.Tk()
+
+        Width = 240
+        Height = 260
+        m_top = 100
+        m_left = 200
+        win.geometry(f"{Width}x{Height}+{m_left}+{m_top}")
+        win["bg"] = "#2C3E50"
+        win.title('ჩოტკი')
+
+        def add_digit(digit):
+            value = calc.get() + str(digit)  #მარჯვენა მხრიდან რომ დაემატოს ციფრი
+            calc.delete(0, tk.END)
+            calc.insert(0, value)
+
+        calc = tk.Entry(win, justify=tk.RIGHT, font=("Arial", 15), width=15)  #justify=tk.LEFT მარცხენა მხრიდან რომ დაწეროს ტექსტი
+        calc.grid(row=0, column=0,  columnspan=3, stick="we") #columnspan=3 აერთიანებს 3 ელემენტს
+
+        tk.Button(text="1", border=5, font=("Arial", 13), command=lambda: add_digit(1)).grid(row=1,column=0, stick="wens", padx=5, pady=5)
+        tk.Button(text="2", border=5, font=("Arial", 13), command=lambda: add_digit(2)).grid(row=1,column=1, stick="wens", padx=5, pady=5)
+        tk.Button(text="3", border=5, font=("Arial", 13), command=lambda: add_digit(3)).grid(row=1,column=2, stick="wens", padx=5, pady=5)
+        tk.Button(text="4", border=5, font=("Arial", 13), command=lambda: add_digit(4)).grid(row=2,column=0, stick="wens", padx=5, pady=5)
+        tk.Button(text="5", border=5, font=("Arial", 13), command=lambda: add_digit(5)).grid(row=2,column=1, stick="wens", padx=5, pady=5)
+        tk.Button(text="6", border=5, font=("Arial", 13), command=lambda: add_digit(6)).grid(row=2,column=2, stick="wens", padx=5, pady=5)
+        tk.Button(text="7", border=5, font=("Arial", 13), command=lambda: add_digit(7)).grid(row=3,column=0, stick="wens", padx=5, pady=5)
+        tk.Button(text="8", border=5, font=("Arial", 13), command=lambda: add_digit(8)).grid(row=3,column=1, stick="wens", padx=5, pady=5)
+        tk.Button(text="9", border=5, font=("Arial", 13), command=lambda: add_digit(9)).grid(row=3,column=2, stick="wens", padx=5, pady=5)
+        tk.Button(text="0", border=5, font=("Arial", 13), command=lambda: add_digit(0)).grid(row=4,column=0, stick="wens", padx=5, pady=5)
+
+        win.grid_columnconfigure(0, minsize=60)
+        win.grid_columnconfigure(1, minsize=60)
+        win.grid_columnconfigure(2, minsize=60)
+
+        win.grid_rowconfigure(1, minsize=60)
+        win.grid_rowconfigure(2, minsize=60)
+        win.grid_rowconfigure(3, minsize=60)
+        win.grid_rowconfigure(4, minsize=60)
+
 
         win.mainloop()
